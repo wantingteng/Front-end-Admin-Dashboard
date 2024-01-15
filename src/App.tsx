@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Button } from 'antd'
+import { UpCircleOutlined } from '@ant-design/icons'
 
 
 
@@ -7,8 +9,10 @@ function App() {
 
   return (
   
-      <div className='App'>
+      <div className="App">
         顶级组件
+        <Button type="primary">buttonq</Button>
+        <UpCircleOutlined />
       </div>
       
   

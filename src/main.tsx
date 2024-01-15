@@ -5,7 +5,7 @@ import "reset-css"
 //UI framework
 
 //global style
-import "./assets/styles/global.scss"
+import "@/assets/styles/global.scss"
 // component style
 import App from './App'
 
