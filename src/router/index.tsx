@@ -1,4 +1,3 @@
-import {lazy} from "react" 
 import Home from "../views/Home"
 import About from "../views/About"
 import { Navigate } from "react-router-dom"
