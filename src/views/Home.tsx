@@ -8,6 +8,8 @@ import {
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import {Outlet,useNavigate} from "react-router-dom"
+
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -28,8 +30,8 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Option 1', '1', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
+  getItem('Option 1', '/page1', <PieChartOutlined />),
+  getItem('Option 2', '/page2', <DesktopOutlined />),
   getItem('User', 'sub1', <UserOutlined />, [
     getItem('Tom', '3'),
     getItem('Bill', '4'),
@@ -39,17 +41,27 @@ const items: MenuItem[] = [
   getItem('Files', '9', <FileOutlined />),
 ];
 
-const App: React.FC = () => {
+const View: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  const navigateTo = useNavigate()
+
+  const menuClick = (e:{key:string}) =>{
+    console.log("click",e.key);
+
+    //click to jump into right router
+    navigateTo(e.key)
+
+  }
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="logo" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={menuClick}/>
       </Sider>
       <Layout>
         <Header style={{ paddingLeft: '16px', background: colorBgContainer }} >
@@ -69,6 +81,8 @@ const App: React.FC = () => {
               borderRadius: borderRadiusLG,
             }}
           >
+            <Outlet />
+
             
           </div>
         </Content>
@@ -80,4 +94,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default View;

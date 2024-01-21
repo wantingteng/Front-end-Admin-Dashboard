@@ -1,21 +1,30 @@
 import Home from "../views/Home"
-import About from "../views/About"
+import Page1 from "../views/Page1"
+import Page2 from "../views/Page2"
 import { Navigate } from "react-router-dom"
 
 
 const routes = [
     {
         path:"/",
-        element:<Navigate to="/home"/>
+        element:<Navigate to="/page1"/>
     },
     {
-        path:"/home",
-        element:<Home />
+        path:"/",
+        element:<Home />,
+        children:[
+            {
+                path:"/page1",
+                element:<Page1/>
+            },
+            {
+                path:"/page2",
+                element:<Page2 />
+            }
+
+        ]
     },
-    {
-        path:"/about",
-        element:<About />
-    }
+    
 ]
 
 export default routes 
